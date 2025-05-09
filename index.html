@@ -1,61 +1,203 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8">
-  <title>FATMA STORE > Toko Baju Online</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Fatma Store - Toko Baju Online</title>
   <style>
-    body { font-family: sans-serif; background: #f4f4f4; margin: 0; padding: 0; }
-    header, footer { background: #333; color: #fff; text-align: center; padding: 15px; }
-    .product-container { display: flex; justify-content: center; flex-wrap: wrap; padding: 20px; }
-    .product { background: #fff; margin: 10px; padding: 15px; border-radius: 8px; width: 200px; text-align: center; }
-    .product img { width: 100%; }
-    .product button { background: green; color: #fff; border: none; padding: 10px; cursor: pointer; }
-    #formModal { display: none; position: fixed; top: 0; left: 0; background: rgba(0,0,0,0.7); width: 100%; height: 100%; align-items: center; justify-content: center; }
-    #formModal form { background: white; padding: 20px; border-radius: 10px; width: 300px; }
+    :root {
+      --primary: #4CAF50;
+      --bg: #f8f9fa;
+      --text: #333;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+    }
+
+    header, footer {
+      background-color: var(--primary);
+      color: white;
+      text-align: center;
+      padding: 15px;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: auto;
+      padding: 20px;
+    }
+
+    .products {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+      justify-content: center;
+    }
+
+    .product-card {
+      background-color: white;
+      border-radius: 8px;
+      box-shadow: 0 0 8px rgba(0,0,0,0.1);
+      overflow: hidden;
+      width: 100%;
+      max-width: 320px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .product-card img {
+      width: 100%;
+      height: auto;
+    }
+
+    .product-info {
+      padding: 15px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .product-info h3 {
+      margin: 0;
+    }
+
+    .product-info button {
+      background-color: var(--primary);
+      color: white;
+      border: none;
+      padding: 10px;
+      cursor: pointer;
+      border-radius: 4px;
+      transition: background 0.3s ease;
+    }
+
+    .product-info button:hover {
+      background-color: #388e3c;
+    }
+
+    /* Modal */
+    #formModal {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.6);
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+    }
+
+    #formModal.active {
+      display: flex;
+    }
+
+    #checkoutForm {
+      background-color: white;
+      padding: 20px;
+      border-radius: 8px;
+      width: 90%;
+      max-width: 400px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.2);
+    }
+
+    #checkoutForm h3 {
+      margin-top: 0;
+    }
+
+    #checkoutForm input, #checkoutForm textarea {
+      width: 100%;
+      padding: 10px;
+      margin-top: 8px;
+      margin-bottom: 16px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+
+    #checkoutForm button {
+      padding: 10px 15px;
+      margin-right: 10px;
+    }
   </style>
 </head>
 <body>
+
   <header>
-    <h1>Toko Baju Online</h1>
+    <h1>Fatma Store</h1>
+    <p>Toko Baju Online Kekinian</p>
   </header>
 
-  <div class="product-container">
-    <div class="product">
-      <img src="https://via.placeholder.com/200x250" alt="Baju A">
-      <h3>Baju Kemeja</h3>
-      <p>Rp150.000</p>
-      <button onclick="openForm('Baju Kemeja')">Beli Sekarang</button>
-    </div>
-  </div>
+  <main class="container">
+    <div class="products">
 
+      <!-- Produk 1 -->
+      <div class="product-card">
+        <img src="https://i.ibb.co/LD3D2HQM/images.jpg" alt="Baju Kemeja">
+        <div class="product-info">
+          <h3>Baju Kemeja</h3>
+          <p>Rp150.000</p>
+          <button onclick="openForm('Baju Kemeja')">Beli Sekarang</button>
+        </div>
+      </div>
+
+      <!-- Produk 2 -->
+      <div class="product-card">
+        <img src="https://i.ibb.co/LD3D2HQM/images.jpg" alt="Baju Gamis">
+        <div class="product-info">
+          <h3>Baju Gamis</h3>
+          <p>Rp200.000</p>
+          <button onclick="openForm('Baju Gamis')">Beli Sekarang</button>
+        </div>
+      </div>
+
+      <!-- Produk 3 -->
+      <div class="product-card">
+        <img src="https://i.ibb.co/LD3D2HQM/images.jpg" alt="Baju Batik">
+        <div class="product-info">
+          <h3>Baju Batik</h3>
+          <p>Rp175.000</p>
+          <button onclick="openForm('Baju Batik')">Beli Sekarang</button>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Modal Form -->
   <div id="formModal">
     <form id="checkoutForm">
-      <h3>Form Checkout</h3>
-      <input type="hidden" name="product_name" id="product_name">
-      <input type="text" name="customer_name" placeholder="Nama" required><br><br>
-      <input type="text" name="phone" placeholder="No WhatsApp (tanpa +)" required><br><br>
-      <textarea name="address" placeholder="Alamat" required></textarea><br><br>
-      <button type="submit">Kirim</button>
-      <button type="button" onclick="closeForm()">Batal</button>
+      <h3>Checkout</h3>
+      <input type="hidden" name="product_name" id="product_name" />
+      <input type="text" name="customer_name" placeholder="Nama Anda" required />
+      <input type="text" name="phone" placeholder="Nomor WhatsApp (tanpa +)" required />
+      <textarea name="address" rows="3" placeholder="Alamat Lengkap" required></textarea>
+      <div style="text-align: right;">
+        <button type="submit">Kirim</button>
+        <button type="button" onclick="closeForm()">Batal</button>
+      </div>
     </form>
   </div>
 
   <footer>
-    &copy; 2025 Toko Baju Online
+    &copy; 2025 Fatma Store. All rights reserved.
   </footer>
 
   <script>
     function openForm(product) {
-      document.getElementById('formModal').style.display = 'flex';
-      document.getElementById('product_name').value = product;
-    }
-    function closeForm() {
-      document.getElementById('formModal').style.display = 'none';
+      document.getElementById("product_name").value = product;
+      document.getElementById("formModal").classList.add("active");
     }
 
-    document.getElementById('checkoutForm').addEventListener('submit', async (e) => {
+    function closeForm() {
+      document.getElementById("formModal").classList.remove("active");
+    }
+
+    document.getElementById("checkoutForm").addEventListener("submit", async function (e) {
       e.preventDefault();
-      const formData = new FormData(e.target);
+      const formData = new FormData(this);
       const data = Object.fromEntries(formData.entries());
 
       const res = await fetch('/checkout', {
@@ -64,8 +206,8 @@
         body: JSON.stringify(data)
       });
 
-      const text = await res.text();
-      alert(text);
+      const result = await res.text();
+      alert(result);
       closeForm();
     });
   </script>
