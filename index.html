@@ -165,17 +165,17 @@
 
     </div>
   </main>
+  
 
   <!-- Modal Form -->
   <div id="formModal">
     <form id="checkoutForm">
-      <h3>Checkout</h3>
+      <h3>HUBUNGIN KAMI</h3>
       <input type="hidden" name="product_name" id="product_name" />
-      <input type="text" name="customer_name" placeholder="Nama Anda" required />
-      <input type="text" name="phone" placeholder="Nomor WhatsApp (tanpa +)" required />
-      <textarea name="address" rows="3" placeholder="Alamat Lengkap" required></textarea>
+          <button onclick="openForm('Whatsapp')">Whatsapp</button>
+          <button onclick="openForm('Telegram')">Telegram</button>
+          <button onclick="openForm('Facebook')">Facebook</button>
       <div style="text-align: right;">
-        <button type="submit">Kirim</button>
         <button type="button" onclick="closeForm()">Batal</button>
       </div>
     </form>
